@@ -10,7 +10,7 @@ const NAV_LINKS = [
 export default function NavBar() {
   return (
     <header>
-      <nav className="p-5 flex items-center justify-between">
+      <nav className="px-5 py-2 flex items-center justify-between fixed w-full top-0 backdrop-blur-sm bg-[#0F1930]/50 z-10">
         <Link to="/" className="logo flex justify-center items-center gap-2">
           <img src="/logo.png" alt="Logo" className="size-12" />
           <h1 className="text-3xl text-[#5755d0] font-medium">
@@ -58,7 +58,7 @@ const ToggleMenu = () => {
         onClick={() => setIsOpen((prev) => !prev)}
       />
       <div
-        className={`md:flex-1 md:text-gray-400 md:static md:justify-end md:items-center gap-4 md:flex-row flex flex-col md:bg-transparent font-medium text-sm md:opacity-100 bg-white absolute top-[150%] right-4 p-3 whitespace-nowrap rounded-md text-gray-700 ${
+        className={`md:flex-1 md:text-gray-400 md:static md:justify-end md:items-center gap-4 md:flex-row flex flex-col md:bg-transparent font-semibold text-sm md:opacity-100 bg-white absolute top-full right-0 p-3 whitespace-nowrap rounded-md text-gray-700 ${
           isOpen ? "opacity-100 -translate-x-1.5 translate-y-1.5" : "opacity-0"
         } transition-all duration-300 ease-in-out`}
       >
