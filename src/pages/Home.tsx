@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <>
       <section className="grid md:grid-cols-2 gap-2">
-        <div className="col-span-1 p-5 space-y-5">
+        <aside className="col-span-1 p-5 space-y-5">
           <span className="uppercase flex justify-center items-center gap-1 bg-[#6F00BE]/20 text-[#C180FF] font-semibold w-fit px-3 py-1 rounded-full border border-[#C180FF] text-xs">
             <Sparkles className="size-4" />
             Ai - powered analysis
@@ -55,12 +55,15 @@ export default function Home() {
             Unlock tailored feedback, keyword mapping, and expert insights
             designed to land your next interview.
           </p>
-          <button className="flex text-[#0F00A4] items-center justify-center gap-3 px-5 py-3 bg-[#A3A6FF] rounded-lg font-semibold">
+          <Link
+            to="/upload-resume"
+            className="flex text-[#0F00A4] items-center justify-center gap-3 px-5 py-3 bg-[#A3A6FF] rounded-lg font-semibold w-fit"
+          >
             <UploadCloud strokeWidth={3} />
             Upload Resume
-          </button>
-        </div>
-        <div className="col-span-1 p-5">
+          </Link>
+        </aside>
+        <aside className="col-span-1 p-5">
           <div className="bg-[#192540] w-full h-full rounded-4xl md:p-10 p-5 space-y-10">
             <div className="flex justify-between items-center">
               <div className="space-y-1">
@@ -88,7 +91,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </aside>
       </section>
       <section className="p-5 space-y-10">
         <h3 className="relative text-2xl flex w-fit">

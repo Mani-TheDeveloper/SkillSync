@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import Home from "../pages/Home";
-import UploadResume from "../pages/UploadResume";
+import { lazy, Suspense } from "react";
+import { NavBar } from "../components/index";
 import ProtectedRoute from "./ProtectedRoute";
+import Home from "../pages/Home";
+const UploadResume = lazy(() => import("../pages/UploadResume"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
 
 export default function AppRouter() {
   return (
@@ -14,7 +16,31 @@ export default function AppRouter() {
             path="/upload-resume"
             element={
               <ProtectedRoute>
-                <UploadResume />
+                <Suspense
+                  fallback={
+                    <div className="h-screen w-screen flex justify-center items-center text-2xl font-medium">
+                      Loading ...
+                    </div>
+                  }
+                >
+                  <UploadResume />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Suspense
+                  fallback={
+                    <div className="h-screen w-screen flex justify-center items-center text-2xl font-medium">
+                      Loading ...
+                    </div>
+                  }
+                >
+                  <Dashboard />
+                </Suspense>
               </ProtectedRoute>
             }
           />
