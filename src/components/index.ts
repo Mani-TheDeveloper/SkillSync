@@ -1,3 +1,3 @@
 import NavBar from "./NavBar";
-
-export { NavBar };
+import ResumeCard from "./ResumeCard";
+export { NavBar, ResumeCard };

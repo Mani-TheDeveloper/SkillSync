@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { NavBar } from "../components/index";
+import { NavBar } from "../components";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "../pages/Home";
 const UploadResume = lazy(() => import("../pages/UploadResume"));
