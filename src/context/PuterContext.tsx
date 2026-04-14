@@ -1,0 +1,45 @@
+import { createContext } from "react";
+
+import type { User } from "@heyputer/puter.js/types/modules/auth";
+import type { ChatResponse, FSItem } from "@heyputer/puter.js";
+
+export interface PuterContextType {
+  error: string | null;
+
+  auth: {
+    user: User | null;
+    isAuthenticated: boolean;
+    signIn: () => Promise<void>;
+    signOut: () => Promise<void>;
+    refreshAuthStatus: () => Promise<void>;
+  };
+
+  fs: {
+    write: (path: string, data: string | File | Blob) => Promise<void | FSItem>;
+    read: (path: string) => Promise<void | Blob>;
+    readDir: (path: string) => Promise<void | FSItem[]>;
+    upload: (files: File | FileList) => Promise<void | FSItem | FSItem[]>;
+    delete: (path: string) => Promise<void>;
+  };
+
+  ai: {
+    feedback: (path: string, message: string) => Promise<ChatResponse>;
+    img2txt: (
+      image: string | File | Blob,
+      testMode?: boolean
+    ) => Promise<string | void>;
+  };
+
+  kv: {
+    get: (key: string) => Promise<unknown>;
+    set: (key: string, value: string) => Promise<boolean | void>;
+    delete: (key: string) => Promise<boolean | void>;
+    list: (
+      pattern: string,
+      returnValues?: false | undefined
+    ) => Promise<void | string[]>;
+    flush: () => Promise<boolean | void>;
+  };
+}
+
+export const PuterContext = createContext<PuterContextType | null>(null);
