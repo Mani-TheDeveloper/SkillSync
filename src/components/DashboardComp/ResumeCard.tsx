@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Resume } from "../types";
+import type { Resume } from "../../types";
 
 export default function ResumeCard({
   resume: {

@@ -1,3 +1,3 @@
+import GlobalErrorModal from "./GlobalErrorModal";
 import NavBar from "./NavBar";
-import ResumeCard from "./ResumeCard";
-export { NavBar, ResumeCard };
+export { NavBar, GlobalErrorModal };

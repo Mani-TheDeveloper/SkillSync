@@ -5,7 +5,9 @@ import type { ChatResponse, FSItem } from "@heyputer/puter.js";
 
 export interface PuterContextType {
   error: string | null;
-
+  handleError: (err: unknown) => void;
+  clearError: () => void;
+  isLoading: boolean;
   auth: {
     user: User | null;
     isAuthenticated: boolean;

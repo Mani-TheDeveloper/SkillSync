@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { usePuter } from "../context/usePuter";
 
 const NAV_LINKS = [
   { title: "Dashboard", href: "/dashboard" },
@@ -47,6 +48,10 @@ const ToggleMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  const {
+    auth: { signIn, user, isAuthenticated, signOut },
+  } = usePuter();
+
   useEffect(() => {
     (() => setIsOpen(false))();
   }, [location.pathname]);
@@ -65,10 +70,26 @@ const ToggleMenu = () => {
         {NAV_LINKS.map(({ href, title }, idx) => (
           <NavLink key={idx} title={title} href={href} />
         ))}
-        <p className="md:text-white text-black">Hi, Mani Shankar</p>
-        <button className="bg-linear-to-r from-[#A3A6FF] to-[#6063EE] text-[#0F00A4] px-4 py-2 rounded-lg uppercase cursor-pointer hover:scale-110 active:scale-105 font-bold">
-          Log in
-        </button>
+        {isAuthenticated ? (
+          <>
+            <p className="md:text-white text-black">
+              Hi, {user?.username ?? "Unknown"}
+            </p>
+            <button
+              className="bg-linear-to-r from-[#A3A6FF] to-[#6063EE] text-[#0F00A4] px-4 py-2 rounded-lg uppercase cursor-pointer hover:scale-110 active:scale-105 font-bold"
+              onClick={async () => await signOut()}
+            >
+              Log Out
+            </button>
+          </>
+        ) : (
+          <button
+            className="bg-linear-to-r from-[#A3A6FF] to-[#6063EE] text-[#0F00A4] px-4 py-2 rounded-lg uppercase cursor-pointer hover:scale-110 active:scale-105 font-bold"
+            onClick={async () => await signIn()}
+          >
+            Log in
+          </button>
+        )}
       </div>
     </div>
   );
