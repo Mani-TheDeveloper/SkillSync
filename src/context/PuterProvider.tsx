@@ -104,7 +104,7 @@ export function PuterProvider({ children }: { children: ReactNode }) {
   const readDir = (path: string) =>
     puter.fs.readdir(path).catch((e: Error) => handleError(e));
 
-  const upload = (files: File | FileList) =>
+  const upload = (files: File | Blob) =>
     puter.fs.upload(files).catch((e: Error) => handleError(e));
 
   const deleteFile = (path: string) =>

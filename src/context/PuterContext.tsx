@@ -20,7 +20,7 @@ export interface PuterContextType {
     write: (path: string, data: string | File | Blob) => Promise<void | FSItem>;
     read: (path: string) => Promise<void | Blob>;
     readDir: (path: string) => Promise<void | FSItem[]>;
-    upload: (files: File | FileList) => Promise<void | FSItem | FSItem[]>;
+    upload: (files: File | Blob) => Promise<void | FSItem | FSItem[]>;
     delete: (path: string) => Promise<void>;
   };
 
