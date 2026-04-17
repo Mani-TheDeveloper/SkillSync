@@ -121,14 +121,17 @@ export function PuterProvider({ children }: { children: ReactNode }) {
           ],
         },
       ],
-      { model: "claude-sonnet-4" }
+      { model: "claude-sonnet-4" },
     );
 
   const img2txt = (image: string | File | Blob, testMode?: boolean) =>
     puter.ai.img2txt(image, testMode).catch((e: Error) => handleError(e));
 
   const getKV = (key: string) =>
-    puter.kv.get(key).catch((e: Error) => handleError(e));
+    puter.kv
+      .get(key)
+      .then((res) => res as string | void)
+      .catch((e: Error) => handleError(e));
 
   const setKV = (key: string, value: string) =>
     puter.kv.set(key, value).catch((e: Error) => handleError(e));
@@ -169,7 +172,7 @@ export function PuterProvider({ children }: { children: ReactNode }) {
         flush: flushKV,
       },
     }),
-    [error, isLoading, user, isAuthenticated]
+    [error, isLoading, user, isAuthenticated],
   );
   return (
     <PuterContext.Provider value={value}>{children}</PuterContext.Provider>
