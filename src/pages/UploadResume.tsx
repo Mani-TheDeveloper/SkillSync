@@ -8,6 +8,7 @@ import { usePuter } from "../context/usePuter";
 import { convertPdfToImage } from "../lib/pdf2img";
 import { generateUUID } from "../util";
 import { prepareInstructions } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 export default function UploadResume() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -16,11 +17,13 @@ export default function UploadResume() {
 
   const { handleError, fs, ai, kv } = usePuter();
 
+  const navigate = useNavigate();
+
   const handleAnalyze = async (
     companyName: string,
     jobTitle: string,
     jobDesc: string,
-    file: File
+    file: File,
   ) => {
     setIsProcessing(true);
     try {
@@ -60,7 +63,7 @@ export default function UploadResume() {
       setStatusText("Analysis ...");
       const feedback = await ai.feedback(
         fileItem.path,
-        prepareInstructions({ jobTitle, jobDescription: jobDesc })
+        prepareInstructions({ jobTitle, jobDescription: jobDesc }),
       );
       if (!feedback) return handleError("Failed to get feedback from AI");
 
@@ -74,8 +77,8 @@ export default function UploadResume() {
             typeof item === "string"
               ? item
               : typeof item === "object" && item !== null && "text" in item
-              ? item.text ?? ""
-              : ""
+                ? (item.text ?? "")
+                : "",
           )
           .join("\n");
       } else feedbackText = "";
@@ -85,9 +88,10 @@ export default function UploadResume() {
       await kv.set(`resume:${data.id}`, JSON.stringify(data));
 
       setStatusText("Analysis completed, redirecting ...");
+      navigate(`/resume/${data.id}`);
     } catch (error) {
       handleError(
-        error instanceof Error ? error.message : "An unknown error occurred"
+        error instanceof Error ? error.message : "An unknown error occurred",
       );
     } finally {
       setIsProcessing(false);

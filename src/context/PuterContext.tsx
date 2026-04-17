@@ -28,17 +28,17 @@ export interface PuterContextType {
     feedback: (path: string, message: string) => Promise<ChatResponse>;
     img2txt: (
       image: string | File | Blob,
-      testMode?: boolean
+      testMode?: boolean,
     ) => Promise<string | void>;
   };
 
   kv: {
-    get: (key: string) => Promise<unknown>;
+    get: (key: string) => Promise<string | void>;
     set: (key: string, value: string) => Promise<boolean | void>;
     delete: (key: string) => Promise<boolean | void>;
     list: (
       pattern: string,
-      returnValues?: false | undefined
+      returnValues?: false | undefined,
     ) => Promise<void | string[]>;
     flush: () => Promise<boolean | void>;
   };

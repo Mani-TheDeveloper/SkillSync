@@ -18,7 +18,7 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
 
   if (!isAuthenticated) {
     return (
-      <div className="h-screen font-medium text-xl flex flex-col items-center justify-center">
+      <div className="h-screen font-medium text-xl flex flex-col items-center justify-center text-center">
         <span className="animate-pulse">Authenticating...</span>
         <p>
           If auto-authentication doesn't work, please do manual{" "}
