@@ -66,7 +66,7 @@ export default function Resume() {
       </section>
       <section className="p-5 grid xl:grid-cols-2 gap-x-5 gap-y-10 xl:h-screen">
         <ResumeImage imagePath={resumeData.imagePath} />
-        <ResumeFeedBack />
+        <ResumeFeedBack feedback={JSON.parse(resumeData.feedback)} />
       </section>
     </>
   );
