@@ -22,7 +22,6 @@ export default function Dashboard() {
           feedback: JSON.parse(JSON.stringify(resume.feedback)),
         };
       });
-      console.log("Loaded resumes:", parseResumes);
       setResumes(parseResumes);
     };
     loadResumes();
