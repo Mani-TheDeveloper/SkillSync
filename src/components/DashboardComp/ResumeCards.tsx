@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { resumes } from "../../constants";
 import ResumeCard from "./ResumeCard";
 import { Plus } from "lucide-react";
+import type { ResumeState } from "../../types";
 
-export default function ResumeCards() {
+export default function ResumeCards({ resumes }: { resumes: ResumeState[] }) {
   return (
     <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-15 gap-10">
       {resumes.map((resume) => (

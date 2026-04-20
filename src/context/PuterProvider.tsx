@@ -139,8 +139,8 @@ export function PuterProvider({ children }: { children: ReactNode }) {
   const deleteKV = (key: string) =>
     puter.kv.del(key).catch((e: Error) => handleError(e));
 
-  const listKV = (pattern: string, returnValues?: false) =>
-    puter.kv.list(pattern, returnValues).catch((e: Error) => handleError(e));
+  const listKV = (pattern: string) =>
+    puter.kv.list(pattern, true).catch((e: Error) => handleError(e));
 
   const flushKV = () => puter.kv.flush().catch((e: Error) => handleError(e));
 

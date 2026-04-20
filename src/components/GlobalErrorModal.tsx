@@ -18,20 +18,20 @@ export default function GlobalErrorModal() {
 
         <div className="mt-6 flex justify-end gap-3">
           <button
-            onClick={clearError}
-            className="px-4 py-2 rounded-lg bg-[#2A3560] hover:bg-[#35427a] transition cursor-pointer"
-          >
-            Close
-          </button>
-
-          <button
             onClick={() => {
               window.location.reload();
               clearError();
             }}
-            className="px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 transition cursor-pointer"
+            className="px-4 py-2 rounded-lg bg-[#2A3560] hover:bg-[#35427a] transition cursor-pointer"
           >
             Reload
+          </button>
+
+          <button
+            onClick={clearError}
+            className="px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 transition cursor-pointer"
+          >
+            Close
           </button>
         </div>
       </div>

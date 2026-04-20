@@ -1,20 +1,14 @@
-export interface Job {
-  title: string;
-  description: string;
-  location: string;
-  requiredSkills: string[];
-}
-
-export interface Resume {
-  id: string;
-  companyName?: string;
-  jobTitle?: string;
-  imagePath: string;
+export interface ResumeState {
+  id: `${string}-${string}-${string}-${string}-${string}`;
   resumePath: string;
+  imagePath: string;
+  companyName: string;
+  jobTitle: string;
+  jobDesc: string;
   feedback: Feedback;
 }
 
-interface Feedback {
+export interface Feedback {
   overallScore: number;
   ATS: {
     score: number;

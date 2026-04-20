@@ -1,5 +1,5 @@
 import { AlertTriangle, CircleCheck, CircleX } from "lucide-react";
-import type { ResumeFeedBack } from "../components/ResumeComp/ResumeFeedBack";
+import type { Feedback } from "../types";
 
 export const generateUUID = () => crypto.randomUUID();
 
@@ -33,7 +33,7 @@ export const numberToColorContent = (
 };
 
 export const factorMapping: {
-  [key: string]: keyof Omit<ResumeFeedBack, "overallScore" | "ATS">;
+  [key: string]: keyof Omit<Feedback, "overallScore" | "ATS">;
 } = {
   "Tone & Style": "toneAndStyle",
   Content: "content",

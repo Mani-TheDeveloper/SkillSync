@@ -1,18 +1,41 @@
 import { Link } from "react-router-dom";
-import type { Resume } from "../../types";
+import type { ResumeState } from "../../types";
+import { useEffect, useState } from "react";
+import { usePuter } from "../../context/usePuter";
 
 export default function ResumeCard({
   resume: {
+    id,
     feedback: { overallScore },
     companyName,
     jobTitle,
+    imagePath,
   },
 }: {
-  resume: Resume;
+  resume: ResumeState;
 }) {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  const { fs } = usePuter();
+
+  useEffect(() => {
+    let imageUrl: string;
+
+    const loadImage = async () => {
+      if (!imagePath) return;
+
+      const blob = await fs.read(imagePath);
+      if (blob instanceof Blob) {
+        imageUrl = URL.createObjectURL(blob);
+        setImageUrl(imageUrl);
+      }
+    };
+    loadImage();
+  }, [fs, imagePath]);
+
   return (
     <Link
-      to={``}
+      to={`/resume/${id}`}
       className="col-span-1 font-medium p-5 bg-[#192540] rounded-2xl space-y-2 hover:scale-105 transition-all duration-500 ease-in-out active:scale-100"
     >
       <div className="flex justify-between items-center">
@@ -38,11 +61,15 @@ export default function ResumeCard({
         </div>
       </div>
       <div className="overflow-hidden h-[40vh] border-4 sm:border-8 border-[#0F1930] rounded-xl">
-        <img
-          src="https://marketplace.canva.com/EAFJ2vcWX2c/1/0/1131w/canva-minimalist-white-and-grey-professional-resume-osicIupI94A.jpg"
-          alt={`${companyName}-${jobTitle}`}
-          loading="lazy"
-        />
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={`${companyName}-${jobTitle}`}
+            loading="lazy"
+          />
+        ) : (
+          <p className="">Image not available</p>
+        )}
       </div>
     </Link>
   );

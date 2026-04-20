@@ -2,16 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { usePuter } from "../context/usePuter";
 import { ResumeFeedBack, ResumeImage } from "../components/ResumeComp";
-
-interface ResumeState {
-  id: `${string}-${string}-${string}-${string}-${string}`;
-  resumePath: string;
-  imagePath: string;
-  companyName: string;
-  jobTitle: string;
-  jobDesc: string;
-  feedback: string;
-}
+import type { ResumeState } from "../types";
 
 export default function Resume() {
   const { id } = useParams<{ id: string }>();
@@ -65,8 +56,11 @@ export default function Resume() {
         </h2>
       </section>
       <section className="p-5 grid xl:grid-cols-2 gap-x-5 gap-y-10 xl:h-screen">
-        <ResumeImage imagePath={resumeData.imagePath} />
-        <ResumeFeedBack feedback={JSON.parse(resumeData.feedback)} />
+        <ResumeImage
+          imagePath={resumeData.imagePath}
+          resumePath={resumeData.resumePath}
+        />
+        <ResumeFeedBack feedback={resumeData.feedback} />
       </section>
     </>
   );

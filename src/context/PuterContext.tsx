@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 import type { User } from "@heyputer/puter.js/types/modules/auth";
-import type { ChatResponse, FSItem } from "@heyputer/puter.js";
+import type { ChatResponse, FSItem, KVPair } from "@heyputer/puter.js";
 
 export interface PuterContextType {
   error: string | null;
@@ -36,10 +36,7 @@ export interface PuterContextType {
     get: (key: string) => Promise<string | void>;
     set: (key: string, value: string) => Promise<boolean | void>;
     delete: (key: string) => Promise<boolean | void>;
-    list: (
-      pattern: string,
-      returnValues?: false | undefined,
-    ) => Promise<void | string[]>;
+    list: (pattern: string) => Promise<void | KVPair<unknown>[]>;
     flush: () => Promise<boolean | void>;
   };
 }

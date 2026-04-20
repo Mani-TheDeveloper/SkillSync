@@ -1,10 +1,10 @@
+import type { Feedback } from "../../../types";
 import { numberToColorContent } from "../../../util";
-import type { ResumeFeedBack } from "../ResumeFeedBack";
 
 export default function ATSCard({
   ATSProps,
 }: {
-  ATSProps: ResumeFeedBack["ATS"];
+  ATSProps: Feedback["ATS"];
 }) {
   const {
     darkColor,

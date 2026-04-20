@@ -7,6 +7,7 @@ import ContextProvider from "../context/ContextProvider";
 const UploadResume = lazy(() => import("../pages/UploadResume"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const Resume = lazy(() => import("../pages/Resume"));
+const Wipe = lazy(() => import("../pages/Wipe"));
 
 export default function AppRouter() {
   return (
@@ -59,6 +60,22 @@ export default function AppRouter() {
                     }
                   >
                     <Resume />
+                  </Suspense>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/wipe"
+              element={
+                <ProtectedRoute>
+                  <Suspense
+                    fallback={
+                      <div className="h-screen w-screen flex justify-center items-center text-2xl font-medium animate-pulse">
+                        Loading ...
+                      </div>
+                    }
+                  >
+                    <Wipe />
                   </Suspense>
                 </ProtectedRoute>
               }

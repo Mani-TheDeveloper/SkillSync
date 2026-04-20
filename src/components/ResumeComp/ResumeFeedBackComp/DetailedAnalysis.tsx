@@ -1,13 +1,9 @@
 import { useState } from "react";
-import type { ResumeFeedBack } from "../ResumeFeedBack";
 import { factorMapping, numberToColorContent } from "../../../util";
 import { ChevronDown } from "lucide-react";
+import type { Feedback } from "../../../types";
 
-export default function DetailedAnalysis({
-  feedback,
-}: {
-  feedback: ResumeFeedBack;
-}) {
+export default function DetailedAnalysis({ feedback }: { feedback: Feedback }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const factors = Object.entries(factorMapping).map(([factorName, key]) => ({
@@ -75,10 +71,12 @@ export default function DetailedAnalysis({
                       <div
                         className={`flex items-center gap-2 ${darkColor} font-medium`}
                       >
-                        <Icon className="sm:size-5 size-7"/>
+                        <Icon className="sm:size-5 size-7" />
                         <p>{tip}</p>
                       </div>
-                      <p className="text-justify sm:text-base text-sm">{explanation}</p>
+                      <p className="text-justify sm:text-base text-sm">
+                        {explanation}
+                      </p>
                     </div>
                   );
                 })}

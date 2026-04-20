@@ -1,11 +1,7 @@
+import type { Feedback } from "../../../types";
 import { factorMapping, numberToColorContent } from "../../../util";
-import type { ResumeFeedBack } from "../ResumeFeedBack";
 
-export default function OverviewCard({
-  feedback,
-}: {
-  feedback: ResumeFeedBack;
-}) {
+export default function OverviewCard({ feedback }: { feedback: Feedback }) {
   return (
     <div className="p-5 bg-[#192540] rounded-2xl space-y-5">
       <div className="flex md:flex-row flex-col-reverse items-center gap-5">
